@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./FetchMethod.css";
+import styles from "./FetchMethod.module.scss";
+import { Link } from "react-router-dom";
 const FetchMethod = () => {
   const [addValue, setaddValue] = useState({
     id: "",
@@ -15,7 +16,6 @@ const FetchMethod = () => {
       ...addValue,
       [key]: e.target.value,
     });
-  console.log(addValue);
   const getData = () => {
     fetch("https://gorest.co.in/public/v2/users?page=1&per_page=101", {
       method: "GET",
@@ -48,7 +48,6 @@ const FetchMethod = () => {
     }
   };
   const updateData = (id) => {
-    console.log("Junausad", id);
     fetch("https://gorest.co.in/public/v2/users/" + id, {
       method: "PUT",
       headers: {
@@ -74,10 +73,9 @@ const FetchMethod = () => {
   useEffect(() => {
     getData();
   }, []);
-  console.log(checkbtn);
   return (
     <>
-      <div>
+      <div className={styles.fetchdiv}>
         <p> Add Data </p>
 
         <form onSubmit={formSubmit}>
@@ -131,7 +129,9 @@ const FetchMethod = () => {
           {user.map((e) => {
             return (
               <tr key={e.id}>
-                <td> {e.id} </td>
+                <td>
+                  <Link to={"/user/" + e.id}>{e.id} </Link>
+                </td>
                 <td> {e.name} </td>
                 <td> {e.email} </td>
                 <td> {e.gender} </td>

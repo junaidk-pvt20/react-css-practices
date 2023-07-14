@@ -1,6 +1,7 @@
 import App from "./Components/Dashborad/";
 import PracticeHooks from "./Components/Hooks/PracticeHooks";
 import PracticeProbs from "./Components/Probs/PracticeProbs";
+import Viewsignleuser from "./Components/API/viewsingleuser";
 // import Practice from './Practice';
 import { createBrowserRouter } from "react-router-dom";
 import FetchMethod from "./Components/API/FetchMethod";
@@ -19,8 +20,12 @@ const appRouter = createBrowserRouter([
     element: <PracticeProbs junaid={value} />,
   },
   {
-    path: "/FetchMethod",
+    path: "/FetchMethod/",
     element: <FetchMethod />,
+  },
+  {
+    path: "/user/:id",
+    element: <Viewsignleuser />,
   },
 ]);
 
